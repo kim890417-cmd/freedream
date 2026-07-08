@@ -1,10 +1,10 @@
-// 유튜브 위젯 데이터 정의 (실제 사장님 유튜브 채널 인기 영상 타이틀 반영)
+// 유튜브 위젯 데이터 정의 (사장님 제공 실제 유튜브 동영상 링크 매핑)
 const YOUTUBE_VIDEOS = [
   {
     id: "video1",
     title: "[꿈해몽] 부자 만드는 꿈해몽 10가지! 돼지·용·복권 당첨 꿈 상담사례 패턴 요약",
     thumbnail: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=640&auto=format&fit=crop", 
-    url: "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1", 
+    url: "https://youtu.be/eHGJJnRtZP8", 
     duration: "12:35",
     views: "1.2만회",
     date: "3일 전"
@@ -13,7 +13,7 @@ const YOUTUBE_VIDEOS = [
     id: "video2",
     title: "[꿈해몽] 똥 꿈해몽 분석! 100명 상담 통계 자료 기반 복권 당첨 꿈의 기운",
     thumbnail: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=640&auto=format&fit=crop",
-    url: "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1",
+    url: "https://youtu.be/7oCSOsiMbv8",
     duration: "15:20",
     views: "8500회",
     date: "1주일 전"
@@ -22,7 +22,7 @@ const YOUTUBE_VIDEOS = [
     id: "video3",
     title: "[꿈해몽] 소름 돋는 이빨 빠지는 꿈의 징조! 아랫니•윗니 빠지는 꿈의 경고",
     thumbnail: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=640&auto=format&fit=crop",
-    url: "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1",
+    url: "https://youtu.be/ZdLRaE0fHEM",
     duration: "9:45",
     views: "2.3만회",
     date: "2주일 전"
