@@ -4,7 +4,7 @@ const YOUTUBE_VIDEOS = [
     id: "video1",
     title: "[꿈해몽] 돼지꿈 꿨다고 다 복권 사면 안 되는 이유! 진짜 대박 길몽 구별하는 법",
     thumbnail: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=640&auto=format&fit=crop", 
-    url: "https://www.youtube.com/@DreamHaemongTV/videos", 
+    url: "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1", 
     duration: "12:35",
     views: "1.2만회",
     date: "3일 전"
@@ -13,7 +13,7 @@ const YOUTUBE_VIDEOS = [
     id: "video2",
     title: "뱀이 나오는 꿈꿨다면 반드시 확인하세요! 종류별/상황별 소름 돋는 뱀 꿈 해석",
     thumbnail: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=640&auto=format&fit=crop",
-    url: "https://www.youtube.com/@DreamHaemongTV/videos",
+    url: "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1",
     duration: "15:20",
     views: "8500회",
     date: "1주일 전"
@@ -22,7 +22,7 @@ const YOUTUBE_VIDEOS = [
     id: "video3",
     title: "절대 지나치면 안 되는 흉몽 5가지 경고! 내 몸과 운을 지키는 꿈해몽 법칙",
     thumbnail: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=640&auto=format&fit=crop",
-    url: "https://www.youtube.com/@DreamHaemongTV/videos",
+    url: "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1",
     duration: "9:45",
     views: "2.3만회",
     date: "2주일 전"

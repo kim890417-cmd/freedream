@@ -1,5 +1,5 @@
 // 유튜브 채널 정보
-const YOUTUBE_CHANNEL = "https://www.youtube.com/@DreamHaemongTV";
+const YOUTUBE_CHANNEL = "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1";
 
 // 꿈해몽 사전 데이터베이스 (고품질 독창적 해설)
 const DREAM_DATABASE = [
