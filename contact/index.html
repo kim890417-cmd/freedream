@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제휴 및 문의하기 | 무료꿈해몽풀이</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .contact-input:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 15px rgba(76, 201, 240, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <span>🌙</span> 무료꿈해몽풀이
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html">홈</a></li>
+        <li><a href="../index.html#resultsSection">꿈해몽 검색</a></li>
+        <li><a href="../index.html#youtubeSection">유튜브 특강</a></li>
+        <li><a href="../ai/">AI 꿈해몽</a></li>
+        <li><a href="../blog/">꿈 블로그</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="detail-container">
+    <div class="back-btn-container">
+      <a href="../index.html" class="back-btn">← 홈으로 돌아가기</a>
+    </div>
+
+    <article class="detail-main" style="width: 100%; max-width: 800px; margin: 0 auto; padding: 40px; background: rgba(22, 24, 56, 0.4); border: 1px solid var(--card-border); border-radius: 24px;">
+      <h1 style="color: #fff; font-size: 2rem; margin-bottom: 12px;">✉️ 제휴 및 문의하기</h1>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 35px; line-height: 1.6;">
+        비즈니스 제휴 제안, 유튜브 콜라보레이션, 광고 및 사이트 개선 건의 사항이 있으신가요? 편하게 적어주시면 빠르게 답변해 드리겠습니다.
+      </p>
+
+      <form id="contactForm" onsubmit="handleContactSubmit(event)">
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 0.9rem; font-weight: 700; color: var(--accent-color); margin-bottom: 8px;">성함 또는 기업명</label>
+          <input type="text" id="contactName" required class="contact-input" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; color: #fff; outline: none; transition: var(--transition);" placeholder="예: 홍길동">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 0.9rem; font-weight: 700; color: var(--accent-color); margin-bottom: 8px;">회신받으실 이메일 주소</label>
+          <input type="email" id="contactEmail" required class="contact-input" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; color: #fff; outline: none; transition: var(--transition);" placeholder="예: address@email.com">
+        </div>
+
+        <div style="margin-bottom: 28px;">
+          <label style="display: block; font-size: 0.9rem; font-weight: 700; color: var(--accent-color); margin-bottom: 8px;">문의 내용</label>
+          <textarea id="contactMessage" required class="contact-input" style="width: 100%; min-height: 150px; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; color: #fff; outline: none; transition: var(--transition); resize: vertical;" placeholder="제휴 제안이나 건의 사항을 구체적으로 적어주세요."></textarea>
+        </div>
+
+        <button type="submit" class="btn-share" style="width: 100%; border: none; font-size: 1.05rem; padding: 16px; justify-content: center; cursor: pointer; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); font-weight: 700;">
+          문의 메세지 보내기
+        </button>
+      </form>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>🌙 무료꿈해몽풀이</h4>
+        <p style="margin-bottom: 15px;">나의 무의식이 보내는 신호를 해석하고, 더 밝고 자유로운 내일을 향해 나아갈 수 있도록 돕는 고품질 무료 꿈해몽 검색 플랫폼입니다.</p>
+        <p>&copy; 2026 FreeDream. All rights reserved.</p>
+      </div>
+      <div class="footer-section">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="../index.html">홈으로 가기</a></li>
+          <li><a href="../index.html#resultsSection">꿈해몽 검색기</a></li>
+          <li><a href="../index.html#youtubeSection">유튜브 영상 채널</a></li>
+          <li><a href="../blog/">꿈 해설 블로그</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>고객 정보 & 정책</h4>
+        <ul>
+          <li><a href="../privacy/">개인정보처리방침</a></li>
+          <li><a href="../terms/">이용약관</a></li>
+          <li><a href="../disclaimer/">면책 고지</a></li>
+          <li><a href="../contact/">제휴 및 문의하기</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById("contactName").value;
+      const email = document.getElementById("contactEmail").value;
+      const message = document.getElementById("contactMessage").value;
+      
+      alert(`${name}님, 문의해주셔서 감사합니다!\n소중한 의견이 contact@freedream.com 메일함으로 가상 전송되었습니다. (데모 데스크톱 환경)`);
+      document.getElementById("contactForm").reset();
+    }
+  </script>
+</body>
+</html>
