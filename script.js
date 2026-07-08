@@ -4,28 +4,19 @@ const YOUTUBE_VIDEOS = [
     id: "video1",
     title: "피나는 꿈 해몽 | 온몸이 피투성이가 되는 꿈을 꿨다면 절대 씻지 마세요!",
     thumbnail: "https://img.youtube.com/vi/eHGJJnRtZP8/hqdefault.jpg", 
-    url: "https://youtu.be/eHGJJnRtZP8", 
-    duration: "12:35",
-    views: "1.2만회",
-    date: "3일 전"
+    url: "https://youtu.be/eHGJJnRtZP8"
   },
   {
     id: "video2",
     title: "무의식이 보내는 가장 강력한 경고! 절대 조심해야 할 흉몽과 예지몽 5가지",
     thumbnail: "https://img.youtube.com/vi/7oCSOsiMbv8/hqdefault.jpg",
-    url: "https://youtu.be/7oCSOsiMbv8",
-    duration: "15:20",
-    views: "8500회",
-    date: "1주일 전"
+    url: "https://youtu.be/7oCSOsiMbv8"
   },
   {
     id: "video3",
     title: "[꿈해몽] 로또 당첨을 상징하는 조상 꿈의 비밀! 조상님이 나타나 돈을 준다면?",
     thumbnail: "https://img.youtube.com/vi/ZdLRaE0fHEM/hqdefault.jpg",
-    url: "https://youtu.be/ZdLRaE0fHEM",
-    duration: "9:45",
-    views: "2.3만회",
-    date: "2주일 전"
+    url: "https://youtu.be/ZdLRaE0fHEM"
   }
 ];
 
@@ -64,13 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="play-overlay">
             <span class="play-icon">▶</span>
           </div>
-          <span class="duration-badge">${video.duration}</span>
         </div>
         <div class="video-info">
           <h3>${video.title}</h3>
-          <div class="video-meta">
-            조회수 ${video.views} • ${video.date}
-          </div>
         </div>
       </div>
     `).join('');
