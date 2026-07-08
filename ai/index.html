@@ -98,6 +98,13 @@
       color: var(--accent-color);
       font-family: monospace;
     }
+
+    /* Standalone 폼 커스텀 스타일 */
+    #aiDreamInput:focus {
+      border-color: var(--accent-color);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 15px rgba(76, 201, 240, 0.2);
+    }
   </style>
 </head>
 <body>
@@ -112,6 +119,7 @@
         <li><a href="../index.html">홈</a></li>
         <li><a href="../index.html#resultsSection">꿈해몽 검색</a></li>
         <li><a href="../index.html#youtubeSection">유튜브 특강</a></li>
+        <li><a href="#" class="active">AI 꿈해몽</a></li>
         <li><a href="../blog/">꿈 블로그</a></li>
       </ul>
     </div>
@@ -137,7 +145,7 @@
       
       <!-- 좌측 메인 본문 -->
       <article class="detail-main" id="aiDetailMain">
-        <!-- 로딩 상태 기본 출력 -->
+        <!-- 기본 폼 또는 로딩이 자바스크립트로 주입됨 -->
         <div class="ai-loading-container" id="aiLoading">
           <div class="cosmic-orb"></div>
           <div class="loading-status" id="loadingStatusText">AI가 무의식 속에 남겨진 메시지를 추출하고 있습니다...</div>
@@ -213,6 +221,17 @@
   <script>
     const CLOUDFLARE_WORKER_URL = "https://your-worker-name.workers.dev";
 
+    // 폼 전송 이벤트 핸들러
+    function handleAiFormSubmit(event) {
+      event.preventDefault();
+      const dreamText = document.getElementById("aiDreamInput").value.trim();
+      if (!dreamText) {
+        alert("해몽할 꿈 내용을 적어주세요!");
+        return;
+      }
+      location.href = "?q=" + encodeURIComponent(dreamText);
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       const urlParams = new URLSearchParams(window.location.search);
       const query = urlParams.get("q");
@@ -229,11 +248,30 @@
         </a>
       `).join('');
 
+      // 1. 파라미터가 없거나 비어있는 경우 (Standalone 꿈 일기장 입력 양식 렌더링)
       if (!query || query.trim() === "") {
-        renderError("해몽할 꿈 내용이 올바르지 않습니다. 홈으로 가서 다시 검색해 주세요.");
+        aiDetailMain.innerHTML = `
+          <div style="padding: 10px 0 20px;">
+            <h2 style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">🤖 AI 실시간 정밀 꿈해몽</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 35px; line-height: 1.6;">
+              사전으로 찾을 수 없었던 신비롭고 긴 꿈 내용을 이야기하듯 편안하게 적어주세요. 구글 제미나이 AI 비서가 무의식과 심리상태를 정밀 분석해 드립니다.
+            </p>
+            
+            <form onsubmit="handleAiFormSubmit(event)">
+              <div style="margin-bottom: 28px;">
+                <label style="display: block; font-size: 0.95rem; font-weight: 700; color: var(--accent-color); margin-bottom: 12px; letter-spacing: -0.01em;">어젯밤 어떤 꿈을 꾸셨나요?</label>
+                <textarea id="aiDreamInput" style="width: 100%; min-height: 200px; background: rgba(0,0,0,0.25); border: 1px solid var(--card-border); border-radius: 16px; padding: 22px; color: #fff; font-family: var(--font-family); font-size: 1rem; line-height: 1.7; outline: none; resize: vertical; transition: var(--transition);" placeholder="예: 맑은 수영장 물 속에서 형형색색의 돌고래 떼와 수영을 했습니다. 돌고래들이 저를 태우고 넓은 은빛 바다로 나아갔는데, 날아가는 듯한 짜릿함과 행복감이 가득했습니다."></textarea>
+              </div>
+              <button type="submit" class="btn-share" style="width: 100%; border: none; font-size: 1.05rem; padding: 16px 24px; justify-content: center; cursor: pointer; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); font-weight: 700;">
+                🔮 AI 실시간 정밀 해몽 시작
+              </button>
+            </form>
+          </div>
+        `;
         return;
       }
 
+      // 2. 파라미터 q가 존재하는 경우 (해몽 분석 진행)
       fetchAiDreamInterpretation(query);
 
       async function fetchAiDreamInterpretation(dreamQuery) {
@@ -286,7 +324,8 @@
             ${htmlContent}
           </div>
 
-          <div class="detail-share-area">
+          <div class="detail-share-area" style="display: flex; gap: 12px; justify-content: flex-end;">
+            <a href="index.html" class="btn-secondary" style="text-decoration: none; padding: 12px 24px;">새 꿈 해몽하기</a>
             <button id="shareBtn" class="btn-share">🔗 AI 해몽 결과 복사하기</button>
           </div>
         `;
