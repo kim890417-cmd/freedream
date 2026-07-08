@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">상세 보기 | 무료꿈해몽풀이</title>
   
-  <!-- SEO 메타 태그 (초기 설정, 스크립트로 동적 갱신 예정) -->
+  <!-- SEO 메타 태그 -->
   <meta name="description" id="metaDescription" content="상세한 꿈해몽 상황별 심리 분석 및 행동 팁 제공.">
   <meta property="og:title" id="ogTitle" content="꿈해몽 상세 분석">
   <meta property="og:description" id="ogDescription" content="무의식이 보내는 신호를 지혜롭게 읽어내는 방법.">
@@ -14,21 +14,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
   <!-- 네비게이션 바 -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">
+      <a href="../index.html" class="nav-logo">
         <span>🌙</span> 무료꿈해몽풀이
       </a>
       <ul class="nav-menu">
-        <li><a href="index.html">홈</a></li>
-        <li><a href="index.html#resultsSection">꿈해몽 검색</a></li>
-        <li><a href="index.html#youtubeSection">유튜브 특강</a></li>
-        <li><a href="index.html#blogSection">꿈 블로그</a></li>
+        <li><a href="../index.html">홈</a></li>
+        <li><a href="../index.html#resultsSection">꿈해몽 검색</a></li>
+        <li><a href="../index.html#youtubeSection">유튜브 특강</a></li>
+        <li><a href="../blog/">꿈 블로그</a></li>
       </ul>
     </div>
   </nav>
@@ -38,12 +38,12 @@
     
     <!-- 뒤로가기 버튼 -->
     <div class="back-btn-container">
-      <a href="index.html" class="back-btn">
+      <a href="../index.html" class="back-btn">
         <span>←</span> 홈으로 돌아가기
       </a>
     </div>
 
-    <!-- 광고 최상단 슬롯 (가이드라인 준수) -->
+    <!-- 광고 최상단 슬롯 -->
     <div class="adsense-balance-zone" style="margin-top: 0; margin-bottom: 30px;">
       <div class="ads-placeholder">ADVERTISEMENT PLACEHOLDER (AdSense Top Banner)</div>
     </div>
@@ -53,7 +53,6 @@
       
       <!-- 좌측 메인 본문 -->
       <article class="detail-main" id="detailMain">
-        <!-- 스크립트에 의해 동적으로 콘텐츠 주입 -->
         <div style="text-align: center; padding: 50px 0;">
           <p>콘텐츠를 불러오는 중입니다...</p>
         </div>
@@ -81,7 +80,7 @@
 
     </div>
 
-    <!-- 광고 최하단 슬롯 (가이드라인 준수) -->
+    <!-- 광고 최하단 슬롯 -->
     <div class="adsense-balance-zone" style="margin-top: 40px; margin-bottom: 0;">
       <div class="ads-placeholder">ADVERTISEMENT PLACEHOLDER (AdSense Bottom Banner)</div>
     </div>
@@ -99,10 +98,10 @@
       <div class="footer-section">
         <h4>바로가기</h4>
         <ul>
-          <li><a href="index.html">홈으로 가기</a></li>
-          <li><a href="index.html#resultsSection">꿈해몽 검색기</a></li>
-          <li><a href="index.html#youtubeSection">유튜브 영상 채널</a></li>
-          <li><a href="index.html#blogSection">꿈 해설 블로그</a></li>
+          <li><a href="../index.html">홈으로 가기</a></li>
+          <li><a href="../index.html#resultsSection">꿈해몽 검색기</a></li>
+          <li><a href="../index.html#youtubeSection">유튜브 영상 채널</a></li>
+          <li><a href="../blog/">꿈 해설 블로그</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -121,7 +120,7 @@
   </footer>
 
   <!-- 데이터 연결 -->
-  <script src="data.js"></script>
+  <script src="../data.js"></script>
 
   <!-- 상세 페이지 전용 로직 제어 스크립트 -->
   <script>
@@ -169,17 +168,16 @@
             </div>
           `;
 
-          // 추천 목록 렌더링 (동일 카테고리 또는 다른 꿈 무작위 추천)
+          // 추천 목록 렌더링
           recommendTitle.innerText = "다른 추천 꿈해몽";
           const relates = DREAM_DATABASE.filter(item => item.id != dream.id).slice(0, 4);
           recommendList.innerHTML = relates.map(item => `
-            <a href="detail.html?id=${item.id}" class="recommend-item">
+            <a href="?id=${item.id}" class="recommend-item">
               <h4>${item.title}</h4>
               <span>${item.category} • ${item.type}</span>
             </a>
           `).join('');
 
-          // 공유 버튼 활성화
           bindShareEvent(dream.title, dream.summary);
           return;
         }
@@ -220,17 +218,16 @@
             </div>
           `;
 
-          // 추천 목록 렌더링 (인기 꿈해몽 추천)
+          // 추천 목록 렌더링
           recommendTitle.innerText = "화제의 인기 꿈해몽";
           const relates = DREAM_DATABASE.slice(0, 4);
           recommendList.innerHTML = relates.map(item => `
-            <a href="detail.html?id=${item.id}" class="recommend-item">
+            <a href="?id=${item.id}" class="recommend-item">
               <h4>${item.title}</h4>
               <span>${item.category} • ${item.type}</span>
             </a>
           `).join('');
 
-          // 공유 버튼 활성화
           bindShareEvent(post.title, post.summary);
           return;
         }
@@ -242,7 +239,7 @@
           <span style="font-size: 4rem; display:block; margin-bottom: 20px;">🕵️‍♂️</span>
           <h2 style="font-size: 1.5rem; margin-bottom: 12px; color: #fff;">요청하신 페이지를 찾을 수 없습니다</h2>
           <p style="color: var(--text-muted); margin-bottom: 30px;">글이 삭제되었거나 잘못된 주소 경로입니다.</p>
-          <a href="index.html" class="back-btn" style="transform: none;">홈으로 가기</a>
+          <a href="../index.html" class="back-btn" style="transform: none;">홈으로 가기</a>
         </div>
       `;
       recommendList.innerHTML = `<p style="font-size: 0.85rem; color: var(--text-muted);">추천 항목이 없습니다.</p>`;

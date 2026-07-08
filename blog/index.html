@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>꿈 칼럼 블로그 | 무료꿈해몽풀이</title>
+  
+  <!-- SEO 메타 태그 -->
+  <meta name="description" content="꿈의 과학적 분석, 심리적 기원, 길몽과 흉몽을 다루는 유익한 정보 칼럼들을 만나보세요.">
+  <meta property="og:title" content="꿈 칼럼 블로그 | 무료꿈해몽풀이">
+  <meta property="og:description" content="나의 잠재의식을 지혜롭게 이해하는 꿈해몽 칼럼 모음.">
+
+  <!-- 스타일시트 및 폰트 가져오기 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <span>🌙</span> 무료꿈해몽풀이
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html">홈</a></li>
+        <li><a href="../index.html#resultsSection">꿈해몽 검색</a></li>
+        <li><a href="../index.html#youtubeSection">유튜브 특강</a></li>
+        <li><a href="#" class="active">꿈 블로그</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 메인 레이아웃 -->
+  <main class="detail-container">
+    
+    <!-- 뒤로가기 버튼 -->
+    <div class="back-btn-container">
+      <a href="../index.html" class="back-btn">
+        <span>←</span> 홈으로 돌아가기
+      </a>
+    </div>
+
+    <!-- 광고 최상단 슬롯 -->
+    <div class="adsense-balance-zone" style="margin-top: 0; margin-bottom: 40px;">
+      <div class="ads-placeholder">ADVERTISEMENT PLACEHOLDER (AdSense Top Banner)</div>
+    </div>
+
+    <!-- 블로그 타이틀 -->
+    <section class="hero" style="padding: 0 0 40px; text-align: left; max-width: 100%;">
+      <h1 style="font-size: 2.3rem;">📖 무료꿈해몽풀이 공식 블로그</h1>
+      <p style="margin-bottom: 0;">전문가가 들려주는 꿈의 심리학적 상징과 수면 건강, 그리고 지혜로운 미래의 길잡이 이야기들입니다.</p>
+    </section>
+
+    <!-- 블로그 카드 그리드 -->
+    <section class="blog-section" style="padding: 0;">
+      <div class="blog-grid" id="blogListGrid">
+        <!-- 동적 칼럼 리스트 로드 -->
+      </div>
+    </section>
+
+    <!-- 광고 최하단 슬롯 -->
+    <div class="adsense-balance-zone" style="margin-top: 50px; margin-bottom: 0;">
+      <div class="ads-placeholder">ADVERTISEMENT PLACEHOLDER (AdSense Bottom Banner)</div>
+    </div>
+
+  </main>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>🌙 무료꿈해몽풀이</h4>
+        <p style="margin-bottom: 15px;">나의 무의식이 보내는 신호를 해석하고, 더 밝고 자유로운 내일을 향해 나아갈 수 있도록 돕는 고품질 무료 꿈해몽 검색 플랫폼입니다.</p>
+        <p>&copy; 2026 FreeDream. All rights reserved.</p>
+      </div>
+      <div class="footer-section">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="../index.html">홈으로 가기</a></li>
+          <li><a href="../index.html#resultsSection">꿈해몽 검색기</a></li>
+          <li><a href="../index.html#youtubeSection">유튜브 영상 채널</a></li>
+          <li><a href="#">꿈 해설 블로그</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>고객 정보 & 정책</h4>
+        <ul>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">면책 고지</a></li>
+          <li><a href="#">제휴 및 문의하기</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>본 사이트는 구글 애드센스 고품질 가이드라인을 엄격히 준수하여 유익한 오리지널 가치와 최상의 사용자 환경을 제공합니다.</p>
+    </div>
+  </footer>
+
+  <!-- 데이터 연결 -->
+  <script src="../data.js"></script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const blogListGrid = document.getElementById("blogListGrid");
+      if (blogListGrid) {
+        blogListGrid.innerHTML = BLOG_DATABASE.map(post => `
+          <div class="blog-card" onclick="location.href='../detail/?post=${post.id}'" style="min-height: 250px;">
+            <div>
+              <div class="blog-card-header">
+                <span class="tag-badge" style="background: rgba(76, 201, 240, 0.1); color: var(--accent-color);">${post.category}</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">${post.date}</span>
+              </div>
+              <h3 style="font-size: 1.25rem;">${post.title}</h3>
+              <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 20px;">${post.summary}</p>
+            </div>
+            <div class="card-footer">
+              <span>블로그 칼럼 읽기</span>
+              <span>→</span>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

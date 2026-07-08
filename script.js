@@ -1,9 +1,9 @@
-// 유튜브 위젯 데이터 정의 (실제 사장님 유튜브 채널 영상 기반 구성)
+// 유튜브 위젯 데이터 정의 (실제 사장님 유튜브 채널 인기 영상 타이틀 반영)
 const YOUTUBE_VIDEOS = [
   {
     id: "video1",
-    title: "[꿈해몽] 돼지꿈 꿨다고 다 복권 사면 안 되는 이유! 진짜 대박 길몽 구별하는 법",
-    thumbnail: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=640&auto=format&fit=crop", 
+    title: "[꿈해몽] 부자 만드는 꿈해몽 10가지! 돼지·용·복권 당첨 꿈 상담사례 패턴 요약",
+    thumbnail: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=640&auto=format&fit=crop", 
     url: "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1", 
     duration: "12:35",
     views: "1.2만회",
@@ -11,8 +11,8 @@ const YOUTUBE_VIDEOS = [
   },
   {
     id: "video2",
-    title: "뱀이 나오는 꿈꿨다면 반드시 확인하세요! 종류별/상황별 소름 돋는 뱀 꿈 해석",
-    thumbnail: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=640&auto=format&fit=crop",
+    title: "[꿈해몽] 똥 꿈해몽 분석! 100명 상담 통계 자료 기반 복권 당첨 꿈의 기운",
+    thumbnail: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=640&auto=format&fit=crop",
     url: "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1",
     duration: "15:20",
     views: "8500회",
@@ -20,8 +20,8 @@ const YOUTUBE_VIDEOS = [
   },
   {
     id: "video3",
-    title: "절대 지나치면 안 되는 흉몽 5가지 경고! 내 몸과 운을 지키는 꿈해몽 법칙",
-    thumbnail: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=640&auto=format&fit=crop",
+    title: "[꿈해몽] 소름 돋는 이빨 빠지는 꿈의 징조! 아랫니•윗니 빠지는 꿈의 경고",
+    thumbnail: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=640&auto=format&fit=crop",
     url: "https://www.youtube.com/@DreamHaemongTV?sub_confirmation=1",
     duration: "9:45",
     views: "2.3만회",
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
             하지만 걱정하지 마세요! 실시간 인공지능 AI 꿈해몽 비서에게 물어보고 즉시 정밀한 풀이를 받아볼 수 있습니다.
           </p>
-          <a href="ai.html?q=${encodeURIComponent(query)}" class="btn-share" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+          <a href="ai/?q=${encodeURIComponent(query)}" class="btn-share" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
             🌙 AI 실시간 정밀 해몽 받기
           </a>
         </div>
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     resultsGrid.innerHTML = dreams.map(dream => `
-      <div class="result-card" onclick="location.href='detail.html?id=${dream.id}'">
+      <div class="result-card" onclick="location.href='detail/?id=${dream.id}'">
         <div>
           <div class="card-header">
             <span class="tag-badge">${dream.category}</span>
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderBlogPosts() {
     if (!blogGrid) return;
     blogGrid.innerHTML = BLOG_DATABASE.map(post => `
-      <div class="blog-card" onclick="location.href='detail.html?post=${post.id}'">
+      <div class="blog-card" onclick="location.href='detail/?post=${post.id}'">
         <div>
           <div class="blog-card-header">
             <span class="tag-badge" style="background: rgba(76, 201, 240, 0.1); color: var(--accent-color);">${post.category}</span>
