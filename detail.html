@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">상세 보기 | 자유로운 꿈해몽</title>
+  <title id="pageTitle">상세 보기 | 무료꿈해몽풀이</title>
   
   <!-- SEO 메타 태그 (초기 설정, 스크립트로 동적 갱신 예정) -->
   <meta name="description" id="metaDescription" content="상세한 꿈해몽 상황별 심리 분석 및 행동 팁 제공.">
@@ -22,7 +22,7 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
-        <span>🌙</span> 자유로운 꿈해몽
+        <span>🌙</span> 무료꿈해몽풀이
       </a>
       <ul class="nav-menu">
         <li><a href="index.html">홈</a></li>
@@ -92,7 +92,7 @@
   <footer>
     <div class="footer-container">
       <div class="footer-section">
-        <h4>🌙 자유로운 꿈해몽</h4>
+        <h4>🌙 무료꿈해몽풀이</h4>
         <p style="margin-bottom: 15px;">나의 무의식이 보내는 신호를 해석하고, 더 밝고 자유로운 내일을 향해 나아갈 수 있도록 돕는 고품질 무료 꿈해몽 검색 플랫폼입니다.</p>
         <p>&copy; 2026 FreeDream. All rights reserved.</p>
       </div>
@@ -140,8 +140,8 @@
         if (dream) {
           // SEO 메타 태그 갱신
           const fullTitle = `[꿈해몽] ${dream.title} 상황별 의미와 행동 팁`;
-          document.title = `${fullTitle} | 자유로운 꿈해몽`;
-          document.getElementById("pageTitle").innerText = `${fullTitle} | 자유로운 꿈해몽`;
+          document.title = `${fullTitle} | 무료꿈해몽풀이`;
+          document.getElementById("pageTitle").innerText = `${fullTitle} | 무료꿈해몽풀이`;
           document.getElementById("metaDescription").setAttribute("content", dream.summary);
           document.getElementById("ogTitle").setAttribute("content", fullTitle);
           document.getElementById("ogDescription").setAttribute("content", dream.summary);
@@ -191,8 +191,8 @@
         if (post) {
           // SEO 메타 태그 갱신
           const fullTitle = `[블로그] ${post.title}`;
-          document.title = `${fullTitle} | 자유로운 꿈해몽`;
-          document.getElementById("pageTitle").innerText = `${fullTitle} | 자유로운 꿈해몽`;
+          document.title = `${fullTitle} | 무료꿈해몽풀이`;
+          document.getElementById("pageTitle").innerText = `${fullTitle} | 무료꿈해몽풀이`;
           document.getElementById("metaDescription").setAttribute("content", post.summary);
           document.getElementById("ogTitle").setAttribute("content", fullTitle);
           document.getElementById("ogDescription").setAttribute("content", post.summary);
@@ -252,7 +252,7 @@
         const shareBtn = document.getElementById("shareBtn");
         if (!shareBtn) return;
         shareBtn.addEventListener("click", () => {
-          const text = `[자유로운 꿈해몽] "${title}" 정보:\n${summary}\n\n자세히 보기: ${window.location.href}`;
+          const text = `[무료꿈해몽풀이] "${title}" 정보:\n${summary}\n\n자세히 보기: ${window.location.href}`;
           navigator.clipboard.writeText(text).then(() => {
             alert("공유 링크와 본문 요약이 클립보드에 복사되었습니다!");
           }).catch(err => {
