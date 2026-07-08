@@ -1,10 +1,10 @@
-// 유튜브 위젯 데이터 정의 (실제 사장님 유튜브 데이터로 쉽게 커스텀 가능)
+// 유튜브 위젯 데이터 정의 (실제 사장님 유튜브 채널 영상 기반 구성)
 const YOUTUBE_VIDEOS = [
   {
     id: "video1",
     title: "[꿈해몽] 돼지꿈 꿨다고 다 복권 사면 안 되는 이유! 진짜 대박 길몽 구별하는 법",
-    thumbnail: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=640&auto=format&fit=crop", // 신비로운 분위기의 이미지
-    url: "https://www.youtube.com", // 실제 링크로 교체 가능
+    thumbnail: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=640&auto=format&fit=crop", 
+    url: "https://www.youtube.com/@DreamHaemongTV/videos", 
     duration: "12:35",
     views: "1.2만회",
     date: "3일 전"
@@ -13,7 +13,7 @@ const YOUTUBE_VIDEOS = [
     id: "video2",
     title: "뱀이 나오는 꿈꿨다면 반드시 확인하세요! 종류별/상황별 소름 돋는 뱀 꿈 해석",
     thumbnail: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=640&auto=format&fit=crop",
-    url: "https://www.youtube.com",
+    url: "https://www.youtube.com/@DreamHaemongTV/videos",
     duration: "15:20",
     views: "8500회",
     date: "1주일 전"
@@ -22,14 +22,14 @@ const YOUTUBE_VIDEOS = [
     id: "video3",
     title: "절대 지나치면 안 되는 흉몽 5가지 경고! 내 몸과 운을 지키는 꿈해몽 법칙",
     thumbnail: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=640&auto=format&fit=crop",
-    url: "https://www.youtube.com",
+    url: "https://www.youtube.com/@DreamHaemongTV/videos",
     duration: "9:45",
     views: "2.3만회",
     date: "2주일 전"
   }
 ];
 
-// 한글 자음 분리 및 초성 매칭용 헬퍼 함수 (가이드라인 준수 고기능성 검색)
+// 한글 자음 분리 및 초성 매칭용 헬퍼 함수
 function getChosung(str) {
   const cho = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
   let result = "";
@@ -49,19 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const clearBtn = document.getElementById("clearBtn");
   const categoryContainer = document.getElementById("categoryContainer");
   const resultsGrid = document.getElementById("resultsGrid");
-  const modal = document.getElementById("detailModal");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalBody = document.getElementById("modalBody");
-  const modalBadge = document.getElementById("modalBadge");
-  const closeModalBtn = document.getElementById("closeModalBtn");
-  const shareBtn = document.getElementById("shareBtn");
+  const blogGrid = document.getElementById("blogGrid");
   const youtubeGrid = document.getElementById("youtubeGrid");
 
   let currentCategory = "전체";
-  let activeDreamId = null;
 
   // 1. 유튜브 위젯 동적 로드
   function renderYoutubeWidgets() {
+    if (!youtubeGrid) return;
     youtubeGrid.innerHTML = YOUTUBE_VIDEOS.map(video => `
       <div class="video-card" onclick="window.open('${video.url}', '_blank')">
         <div class="thumbnail-wrap">
@@ -83,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 2. 카테고리 칩 렌더링
   function renderCategoryChips() {
+    if (!categoryContainer) return;
     categoryContainer.innerHTML = DREAM_CATEGORIES.map(category => `
       <button class="category-chip ${category === currentCategory ? 'active' : ''}" data-category="${category}">
         ${category}
@@ -104,8 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. 실시간 검색 및 결과 출력
+  // 3. 실시간 꿈해몽 검색 결과 출력
   function filterAndRenderResults() {
+    if (!resultsGrid) return;
     const query = searchInput.value.trim().toLowerCase();
     const queryChosung = getChosung(query);
 
@@ -138,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderResults(dreams) {
+    if (!resultsGrid) return;
     if (dreams.length === 0) {
       resultsGrid.innerHTML = `
         <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
@@ -149,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     resultsGrid.innerHTML = dreams.map(dream => `
-      <div class="result-card" onclick="openDetailModal(${dream.id})">
+      <div class="result-card" onclick="location.href='detail.html?id=${dream.id}'">
         <div>
           <div class="card-header">
             <span class="tag-badge">${dream.category}</span>
@@ -159,70 +157,49 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>${dream.summary}</p>
         </div>
         <div class="card-footer">
-          <span>상세 해석 보기</span>
+          <span>상세 해석 읽기</span>
           <span>→</span>
         </div>
       </div>
     `).join('');
   }
 
-  // 4. 모달 상세 보기 로직
-  window.openDetailModal = function(id) {
-    const dream = DREAM_DATABASE.find(item => item.id === id);
-    if (!dream) return;
-
-    activeDreamId = id;
-    modalTitle.innerText = dream.title;
-    modalBadge.innerHTML = `
-      <span class="tag-badge" style="margin-right: 8px;">${dream.category}</span>
-      <span class="type-badge ${dream.type}">${dream.type}</span>
-    `;
-    modalBody.innerHTML = dream.interpretation;
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden"; // 배경 스크롤 차단
-  };
-
-  function closeModal() {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-    activeDreamId = null;
+  // 4. 블로그 글 목록 렌더링
+  function renderBlogPosts() {
+    if (!blogGrid) return;
+    blogGrid.innerHTML = BLOG_DATABASE.map(post => `
+      <div class="blog-card" onclick="location.href='detail.html?post=${post.id}'">
+        <div>
+          <div class="blog-card-header">
+            <span class="tag-badge" style="background: rgba(76, 201, 240, 0.1); color: var(--accent-color);">${post.category}</span>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">${post.date}</span>
+          </div>
+          <h3>${post.title}</h3>
+          <p>${post.summary}</p>
+        </div>
+        <div class="card-footer">
+          <span>블로그 글 읽기</span>
+          <span>→</span>
+        </div>
+      </div>
+    `).join('');
   }
 
-  // 5. 공유 기능 (URL 또는 텍스트 복사)
-  shareBtn.addEventListener("click", () => {
-    const dream = DREAM_DATABASE.find(item => item.id === activeDreamId);
-    if (!dream) return;
-
-    const dummyText = `[자유로운 꿈해몽] "${dream.title}" 해몽 정보:\n${dream.summary}\n\n자세히 보기: ${window.location.href}`;
-    navigator.clipboard.writeText(dummyText).then(() => {
-      alert("꿈해몽 정보가 클립보드에 복사되었습니다! SNS나 카카오톡에 공유해보세요.");
-    }).catch(err => {
-      console.error("복사 실패:", err);
-    });
-  });
-
   // 이벤트 바인딩
-  searchInput.addEventListener("input", filterAndRenderResults);
-  clearBtn.addEventListener("click", () => {
-    searchInput.value = "";
-    filterAndRenderResults();
-    searchInput.focus();
-  });
-
-  closeModalBtn.addEventListener("click", closeModal);
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  // ESC 키 클릭시 모달 닫기
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("active")) {
-      closeModal();
-    }
-  });
+  if (searchInput) {
+    searchInput.addEventListener("input", filterAndRenderResults);
+  }
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      filterAndRenderResults();
+      searchInput.focus();
+    });
+  }
 
   // 초기 렌더링
   renderYoutubeWidgets();
   renderCategoryChips();
   filterAndRenderResults();
+  renderBlogPosts();
 });

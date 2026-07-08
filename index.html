@@ -30,8 +30,8 @@
       <ul class="nav-menu">
         <li><a href="#" class="active">홈</a></li>
         <li><a href="#resultsSection">꿈해몽 검색</a></li>
-        <li><a href="#youtubeSection">유튜브 팁</a></li>
-        <li><a href="#blogSection">꿈 칼럼</a></li>
+        <li><a href="#youtubeSection">유튜브 특강</a></li>
+        <li><a href="#blogSection">꿈 블로그</a></li>
       </ul>
     </div>
   </nav>
@@ -68,8 +68,8 @@
     <section id="resultsSection" class="results-section">
       <div class="section-header" style="margin-bottom: 25px;">
         <div class="section-title-wrap">
-          <h2>🔮 꿈해몽 사전 결과</h2>
-          <p>해당하는 꿈을 클릭하면 상세한 심리 분석과 행동 팁을 확인할 수 있습니다.</p>
+          <h2>🔮 꿈해몽 사전 검색 결과</h2>
+          <p>해당하는 꿈을 클릭하면 상세 페이지로 이동해 전문적인 조언을 읽어보실 수 있습니다.</p>
         </div>
       </div>
       <div class="results-grid" id="resultsGrid">
@@ -82,10 +82,10 @@
       <div class="section-container">
         <div class="section-header">
           <div class="section-title-wrap">
-            <h2>🎥 사장님의 꿈해몽 유튜브 특강</h2>
-            <p>유튜브 채널에서 더 생생하고 풍성한 꿈 이야기와 소름 돋는 인생 꿀팁들을 들어보세요!</p>
+            <h2>🎥 DreamHaemongTV 유튜브 최신 강좌</h2>
+            <p>유튜브 채널에서 더 생생하고 풍성한 꿈 이야기와 소름 돋는 인생 꿀팁들을 확인하세요!</p>
           </div>
-          <a href="https://www.youtube.com" target="_blank" class="btn-youtube-subscribe">
+          <a href="https://www.youtube.com/@DreamHaemongTV/videos" target="_blank" class="btn-youtube-subscribe">
             <span>▶</span> 채널 구독하기
           </a>
         </div>
@@ -95,26 +95,17 @@
       </div>
     </section>
 
-    <!-- 오리지널 꿈 칼럼 섹션 (애드센스 고품질 가치 확보) -->
+    <!-- 오리지널 꿈 블로그 섹션 (애드센스 고품질 가치 확보) -->
     <section id="blogSection" class="blog-section">
       <div class="section-container">
         <div class="section-header" style="margin-bottom: 35px;">
           <div class="section-title-wrap">
-            <h2>📖 꿈에 관한 흥미로운 이야기</h2>
-            <p>구글 애드센스 권장 오리지널 칼럼으로, 꿈의 과학적/심리적 메커니즘을 알아봅니다.</p>
+            <h2>📖 꿈해몽 정보 블로그</h2>
+            <p>꿈의 과학적, 심리학적 원리와 해몽을 지혜롭게 다루는 유익한 글들을 모아 읽어보세요.</p>
           </div>
         </div>
-        <div class="blog-grid">
-          <div class="blog-card">
-            <h3>💡 꿈을 더 잘 기억하는 3가지 과학적 습관</h3>
-            <p style="margin-bottom: 12px;">우리는 누구나 매일 밤 여러 개의 꿈을 꾸지만, 잠에서 깨어난 직후 5분 안에 50%, 10분 안에 90% 이상의 꿈 내용을 잊어버립니다.</p>
-            <p>꿈을 기억하고 싶다면, 잠에서 깨자마자 몸을 크게 움직이지 않고 눈을 감은 채 어젯밤 이미지를 회상하는 습관을 들여보세요. 머리맡에 노트와 펜을 두고 즉시 키워드를 받아적는 '드림 다이어리' 작성이 가장 효과적입니다.</p>
-          </div>
-          <div class="blog-card">
-            <h3>⚖️ 길몽과 흉몽을 대하는 올바른 마음가짐</h3>
-            <p style="margin-bottom: 12px;">꿈은 미래의 고정된 사건을 말해주는 절대적 예언서가 아니라, 마음의 잠재의식과 육체적 상태가 보내는 힌트입니다.</p>
-            <p>좋은 꿈을 꿨다면 기분 좋은 열정으로 하루를 채우고, 만약 우려되는 흉몽을 꿨다면 불안해하기보다는 자신의 최근 피로도나 대인관계 행동을 한 번 더 돌아보는 성찰의 계기로 삼는 것이 가장 현명한 해몽 활용법입니다.</p>
-          </div>
+        <div class="blog-grid" id="blogGrid">
+          <!-- script.js에 의해 동적 생성 -->
         </div>
       </div>
     </section>
@@ -128,26 +119,6 @@
     </section>
 
   </main>
-
-  <!-- 상세 보기 모달 창 -->
-  <div id="detailModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 id="modalTitle">꿈 제목</h2>
-        <button id="closeModalBtn" class="close-btn">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div id="modalBadge" style="margin-bottom: 20px;"></div>
-        <div id="modalBody" style="line-height: 1.8; color: var(--text-color);">
-          <!-- 해몽 세부 상세 내용 -->
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button id="shareBtn" class="btn-secondary">🔗 해몽 공유하기</button>
-        <button onclick="document.getElementById('closeModalBtn').click()" class="btn-secondary" style="background: var(--primary-color); border: none;">닫기</button>
-      </div>
-    </div>
-  </div>
 
   <!-- 푸터 -->
   <footer>
@@ -163,7 +134,7 @@
           <li><a href="#">홈으로 가기</a></li>
           <li><a href="#resultsSection">꿈해몽 검색기</a></li>
           <li><a href="#youtubeSection">유튜브 영상 채널</a></li>
-          <li><a href="#blogSection">꿈 해설 칼럼</a></li>
+          <li><a href="#blogSection">꿈 해설 블로그</a></li>
         </ul>
       </div>
       <div class="footer-section">
