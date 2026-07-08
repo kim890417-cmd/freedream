@@ -51,6 +51,13 @@
           <input type="text" id="searchInput" class="search-input" placeholder="키워드나 초성을 입력하세요 (예: 돼지, 뱀, ㄷㅈ, ㅂ)" autocomplete="off">
           <button id="clearBtn" class="clear-btn">✕</button>
         </div>
+        
+        <!-- AI 직접 질문 버튼 -->
+        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;">
+          <button onclick="askAIDirectly()" class="category-chip" style="background: rgba(157, 78, 221, 0.1); border-color: rgba(157, 78, 221, 0.3); color: var(--accent-color); font-weight: 700; cursor: pointer;">
+            🤖 AI에게 꿈 직접 적어 물어보기
+          </button>
+        </div>
       </div>
     </section>
 
@@ -131,10 +138,10 @@
       <div class="footer-section">
         <h4>바로가기</h4>
         <ul>
-          <li><a href="#">홈으로 가기</a></li>
-          <li><a href="#resultsSection">꿈해몽 검색기</a></li>
-          <li><a href="#youtubeSection">유튜브 영상 채널</a></li>
-          <li><a href="#blogSection">꿈 해설 블로그</a></li>
+          <li><a href="index.html">홈으로 가기</a></li>
+          <li><a href="index.html#resultsSection">꿈해몽 검색기</a></li>
+          <li><a href="index.html#youtubeSection">유튜브 영상 채널</a></li>
+          <li><a href="index.html#blogSection">꿈 해설 블로그</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -155,5 +162,17 @@
   <!-- 데이터 및 스크립트 연결 -->
   <script src="data.js"></script>
   <script src="script.js"></script>
+  <script>
+    // AI 직접 질문 핸들러
+    function askAIDirectly() {
+      const q = document.getElementById("searchInput").value.trim();
+      if (!q) {
+        alert("검색창에 해몽할 꿈 내용을 구체적으로 입력하고 클릭해 주세요!\n(예: 날아다니는 용을 타고 우주로 가는 꿈)");
+        document.getElementById("searchInput").focus();
+        return;
+      }
+      location.href = "ai.html?q=" + encodeURIComponent(q);
+    }
+  </script>
 </body>
 </html>

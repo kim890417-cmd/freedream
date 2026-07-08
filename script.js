@@ -131,16 +131,35 @@ document.addEventListener("DOMContentLoaded", () => {
       return true;
     });
 
-    renderResults(filtered);
+    renderResults(filtered, query);
   }
 
-  function renderResults(dreams) {
+  function renderResults(dreams, query) {
     if (!resultsGrid) return;
+    
+    // 검색어가 입력되었는데 매칭 결과가 없을 때 (AI 추천 화면 렌더링)
+    if (dreams.length === 0 && query && query.length > 0) {
+      resultsGrid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 50px 20px; background: rgba(157, 78, 221, 0.05); border: 1px dashed var(--primary-color); border-radius: 20px;">
+          <span style="font-size: 3.5rem; display: block; margin-bottom: 15px;">🤖</span>
+          <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 8px;">사전에 "${query}"에 대한 정확한 해몽이 없습니다</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
+            하지만 걱정하지 마세요! 실시간 인공지능 AI 꿈해몽 비서에게 물어보고 즉시 정밀한 풀이를 받아볼 수 있습니다.
+          </p>
+          <a href="ai.html?q=${encodeURIComponent(query)}" class="btn-share" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+            🌙 AI 실시간 정밀 해몽 받기
+          </a>
+        </div>
+      `;
+      return;
+    }
+    
+    // 검색어가 비어있을 때는 디폴트 가이드라인
     if (dreams.length === 0) {
       resultsGrid.innerHTML = `
         <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
           <span style="font-size: 3rem; display: block; margin-bottom: 10px;">🔍</span>
-          검색된 꿈해몽 정보가 없습니다. 다른 키워드로 검색해보세요!
+          선택한 카테고리에 맞는 꿈을 검색하거나 카테고리 필터를 변경해 보세요!
         </div>
       `;
       return;

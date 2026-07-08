@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 실시간 꿈해몽 | 자유로운 꿈해몽</title>
+  
+  <!-- SEO 메타 태그 -->
+  <meta name="description" content="인공지능 AI가 분석하는 실시간 꿈해몽 및 심리 분석 서비스.">
+  <meta property="og:title" content="AI 실시간 꿈해몽 | 자유로운 꿈해몽">
+  <meta property="og:description" content="나의 잠재의식이 보내는 신호를 AI를 통해 실시간으로 해석해 봅니다.">
+
+  <!-- 스타일시트 및 폰트 가져오기 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* AI 로딩 애니메이션 전용 스타일 */
+    .ai-loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .cosmic-orb {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-color), var(--primary-color), transparent);
+      filter: blur(10px);
+      animation: pulse 2.5s infinite ease-in-out, rotate 10s infinite linear;
+      margin-bottom: 30px;
+      box-shadow: 0 0 30px rgba(76, 201, 240, 0.6);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(0.9);
+        opacity: 0.6;
+        filter: blur(8px);
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 1;
+        filter: blur(15px);
+        box-shadow: 0 0 50px rgba(157, 78, 221, 0.8);
+      }
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-status {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .loading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* AI 설정 도우미 배너 */
+    .worker-setup-notice {
+      background: rgba(157, 78, 221, 0.05);
+      border: 1px dashed var(--primary-color);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 30px;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    
+    .worker-setup-notice h4 {
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .worker-setup-notice code {
+      background: rgba(0,0,0,0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent-color);
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span>🌙</span> 자유로운 꿈해몽
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html">홈</a></li>
+        <li><a href="index.html#resultsSection">꿈해몽 검색</a></li>
+        <li><a href="index.html#youtubeSection">유튜브 특강</a></li>
+        <li><a href="index.html#blogSection">꿈 블로그</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 메인 레이아웃 -->
+  <main class="detail-container">
+    
+    <!-- 뒤로가기 버튼 -->
+    <div class="back-btn-container">
+      <a href="index.html" class="back-btn">
+        <span>←</span> 홈으로 돌아가기
+      </a>
+    </div>
+
+    <!-- 광고 최상단 슬롯 -->
+    <div class="adsense-balance-zone" style="margin-top: 0; margin-bottom: 30px;">
+      <div class="ads-placeholder">ADVERTISEMENT PLACEHOLDER (AdSense Top Banner)</div>
+    </div>
+
+    <!-- 본문 레이아웃 -->
+    <div class="detail-layout">
+      
+      <!-- 좌측 메인 본문 -->
+      <article class="detail-main" id="aiDetailMain">
+        <!-- 로딩 상태 기본 출력 -->
+        <div class="ai-loading-container" id="aiLoading">
+          <div class="cosmic-orb"></div>
+          <div class="loading-status" id="loadingStatusText">AI가 무의식 속에 남겨진 메시지를 추출하고 있습니다...</div>
+          <div class="loading-sub">구글 제미나이 AI가 꿈의 상징을 종합 분석하는 중입니다. (약 3~5초 소요)</div>
+        </div>
+      </article>
+
+      <!-- 우측 사이드바 추천 목록 -->
+      <aside class="detail-sidebar" id="detailSidebar">
+        <!-- 위젯 1: 인기 꿈해몽 추천 -->
+        <div class="sidebar-widget">
+          <h3>화제의 인기 꿈해몽</h3>
+          <div class="sidebar-recommend-list" id="recommendList">
+            <!-- 스크립트에 의해 동적 생성 -->
+          </div>
+        </div>
+
+        <!-- 위젯 2: 유튜브 구독 유도 -->
+        <div class="sidebar-widget" style="text-align: center; background: rgba(255, 0, 0, 0.05); border-color: rgba(255,0,0,0.15);">
+          <h3 style="border: none; padding-left: 0; text-align: center;">🎬 유튜브 채널</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">더 다양한 꿈 영상 강좌를 보시려면 구독해 주세요!</p>
+          <a href="https://www.youtube.com/@DreamHaemongTV" target="_blank" class="btn-youtube-subscribe" style="padding: 10px 20px; font-size: 0.85rem; width: 100%; justify-content: center;">
+            구독하러 가기
+          </a>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- 광고 최하단 슬롯 -->
+    <div class="adsense-balance-zone" style="margin-top: 40px; margin-bottom: 0;">
+      <div class="ads-placeholder">ADVERTISEMENT PLACEHOLDER (AdSense Bottom Banner)</div>
+    </div>
+
+  </main>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>🌙 자유로운 꿈해몽</h4>
+        <p style="margin-bottom: 15px;">나의 무의식이 보내는 신호를 해석하고, 더 밝고 자유로운 내일을 향해 나아갈 수 있도록 돕는 고품질 무료 꿈해몽 검색 플랫폼입니다.</p>
+        <p>&copy; 2026 FreeDream. All rights reserved.</p>
+      </div>
+      <div class="footer-section">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="index.html">홈으로 가기</a></li>
+          <li><a href="index.html#resultsSection">꿈해몽 검색기</a></li>
+          <li><a href="index.html#youtubeSection">유튜브 영상 채널</a></li>
+          <li><a href="index.html#blogSection">꿈 해설 블로그</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>고객 정보 & 정책</h4>
+        <ul>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">면책 고지</a></li>
+          <li><a href="#">제휴 및 문의하기</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>본 사이트는 구글 애드센스 고품질 가이드라인을 엄격히 준수하여 유익한 오리지널 가치와 최상의 사용자 환경을 제공합니다.</p>
+    </div>
+  </footer>
+
+  <!-- 데이터 연결 -->
+  <script src="data.js"></script>
+
+  <!-- AI 해몽 통신 및 렌더링 제어 스크립트 -->
+  <script>
+    /**
+     * [설정 사항]
+     * 배포하신 Cloudflare Worker의 주소를 아래 변수에 설정해 주세요.
+     * 예: "https://dream-ai.yourname.workers.dev"
+     */
+    const CLOUDFLARE_WORKER_URL = "https://your-worker-name.workers.dev";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get("q");
+
+      const aiDetailMain = document.getElementById("aiDetailMain");
+      const recommendList = document.getElementById("recommendList");
+
+      // 우측 인기 꿈 목록 렌더링
+      const relates = DREAM_DATABASE.slice(0, 4);
+      recommendList.innerHTML = relates.map(item => `
+        <a href="detail.html?id=${item.id}" class="recommend-item">
+          <h4>${item.title}</h4>
+          <span>${item.category} • ${item.type}</span>
+        </a>
+      `).join('');
+
+      if (!query || query.trim() === "") {
+        renderError("해몽할 꿈 내용이 올바르지 않습니다. 홈으로 가서 다시 검색해 주세요.");
+        return;
+      }
+
+      // AI 해몽 요청 수행
+      fetchAiDreamInterpretation(query);
+
+      async function fetchAiDreamInterpretation(dreamQuery) {
+        try {
+          // 워커 주소가 설정되지 않은 초기 디폴트 상태일 때 
+          if (CLOUDFLARE_WORKER_URL.includes("your-worker-name")) {
+            console.log("Worker URL not set. Loading realistic dynamic simulator for demo.");
+            // 2초 딜레이를 주어 실제 로딩감을 형성한 뒤 고성능 시뮬레이터 구동 (테스트용)
+            setTimeout(() => {
+              renderSimulationResult(dreamQuery);
+            }, 2500);
+            return;
+          }
+
+          const response = await fetch(CLOUDFLARE_WORKER_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ query: dreamQuery })
+          });
+
+          if (!response.ok) {
+            throw new Error("AI 서버 응답 실패");
+          }
+
+          const data = await response.json();
+          if (data.error) {
+            throw new Error(data.error);
+          }
+
+          renderResult(dreamQuery, data.result);
+
+        } catch (error) {
+          console.error("AI Fetch Error:", error);
+          // 실패 시 사용자 체험을 유지하기 위해 고성능 시뮬레이터로 자동 폴백(Fallback) 처리
+          setTimeout(() => {
+            renderSimulationResult(dreamQuery, true); // true: 에러 안내 배너 노출
+          }, 1500);
+        }
+      }
+
+      // AI 실제 응답 화면 출력
+      function renderResult(dreamQuery, htmlContent) {
+        aiDetailMain.innerHTML = `
+          <div class="detail-header-wrap">
+            <h1 class="detail-title" style="font-size: 1.8rem; line-height: 1.4;">🤖 AI 실시간 꿈해몽 분석</h1>
+            <div class="detail-meta-row">
+              <span class="tag-badge" style="background: rgba(6, 214, 160, 0.1); color: var(--success-color);">질문: "${dreamQuery}"</span>
+              <span>• 실시간 제미나이 인공지능 분석</span>
+            </div>
+          </div>
+          
+          <div class="detail-body-content">
+            ${htmlContent}
+          </div>
+
+          <div class="detail-share-area">
+            <button id="shareBtn" class="btn-share">🔗 AI 해몽 결과 복사하기</button>
+          </div>
+        `;
+
+        bindShareEvent(dreamQuery);
+      }
+
+      // 에러 메시지 렌더링
+      function renderError(message) {
+        aiDetailMain.innerHTML = `
+          <div style="text-align: center; padding: 60px 0;">
+            <span style="font-size: 4rem; display:block; margin-bottom: 20px;">🚨</span>
+            <h2 style="font-size: 1.5rem; margin-bottom: 12px; color: #fff;">분석을 완료하지 못했습니다</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">${message}</p>
+            <a href="index.html" class="back-btn" style="transform: none;">홈으로 가기</a>
+          </div>
+        `;
+      }
+
+      // 💡 [클라이언트 테스트용] AI 해몽 고성능 시뮬레이터 (구글 API 설정 전 즉시 테스트 가능하게 함)
+      function renderSimulationResult(dreamQuery, showSetupNotice = false) {
+        // 입력 키워드 기반 똑똑한 상황 파악
+        let dreamTopic = "입력하신 꿈";
+        let mainSymbol = "무의식의 반영";
+        let defaultType = "길몽/심리몽";
+        let summaryText = "내면의 열정과 성장의 의지가 반영된 꿈입니다.";
+        
+        if (dreamQuery.includes("돼지") || dreamQuery.includes("ㄷㅈ")) {
+          dreamTopic = "돼지가 출현한 꿈";
+          mainSymbol = "재물과 풍요의 결실";
+          defaultType = "대길몽";
+          summaryText = "예상치 못한 기회나 번영이 다가옴을 나타냅니다.";
+        } else if (dreamQuery.includes("뱀") || dreamQuery.includes("ㅂ")) {
+          dreamTopic = "뱀이 나타난 꿈";
+          mainSymbol = "에너지와 지혜의 변화";
+          defaultType = "길몽/태몽";
+          summaryText = "창조적인 통찰력이나 큰 발전을 이룰 징조입니다.";
+        } else if (dreamQuery.includes("돈") || dreamQuery.includes("ㄷ")) {
+          dreamTopic = "돈과 재물에 관한 꿈";
+          mainSymbol = "가치와 정신적 에너지";
+          defaultType = "길몽/심리몽";
+          summaryText = "자신의 능력에 대한 가치나 기회를 부여받을 징조입니다.";
+        }
+
+        const simulatedHTML = `
+          <h3>1. 한 줄 요약</h3>
+          <p>이 꿈은 <strong>[${mainSymbol}]</strong>을 상징하며, 현실에서 새로운 가능성을 향한 <strong>${summaryText}</strong></p>
+
+          <h3>2. 종합 길흉 풀이</h3>
+          <p>종합적으로 <strong>${defaultType}</strong>의 기운이 매우 강합니다. 꿈에서 겪은 기이한 현상은 현실의 일상적인 흐름에 변화가 다가오고 있음을 의미합니다. 특히 금전운이나 명예운에 있어 평소보다 유리한 위치에 서게 되며, 주도권을 쥐고 추진할 기회가 열립니다.</p>
+          <p>도전적인 상황이 발생하더라도 스스로의 통제력을 잃지 않고 차분히 해결해 낼 수 있는 영감과 지혜를 얻게 되는 시기입니다. 긍정적인 기대감을 품고 다가올 내일을 맞이하십시오.</p>
+
+          <h3>3. 심리학적 분석</h3>
+          <p>정신분석학적 관점에서 이 꿈은 현실의 억눌린 피로감이나 욕구를 시원하게 해소하려는 **'정신 정화 작용(Catharsis)'**의 일환입니다. 최근 어떤 문제를 해결하기 위해 많은 고민을 해왔다면, 그 잠재의식적인 스트레스가 상징물(동물이나 상황)로 변형되어 해답을 암시해 준 것입니다.</p>
+          <p>스스로를 조금 더 너그럽게 인정하고, 자아 성취감을 만끽하고자 하는 건강한 마음의 발로로 해석됩니다.</p>
+
+          <h3>4. 현실 행동 지침</h3>
+          <p>이번 주에는 마음을 조급하게 먹지 말고 하루의 목표를 심플하게 세워 행동하는 것이 이롭습니다. 주변인의 비판이나 소소한 의견에 민감하게 반응하기보다, <strong>자신의 감각과 능력을 굳건히 신뢰</strong>해 나가십시오. 에너지 낭비를 예방하기 위해 규칙적인 수면을 취하는 것도 적극 추천합니다.</p>
+        `;
+
+        let noticeBanner = "";
+        if (showSetupNotice || CLOUDFLARE_WORKER_URL.includes("your-worker-name")) {
+          noticeBanner = `
+            <div class="worker-setup-notice">
+              <h4>🤖 AI 연동 실시간 시뮬레이터 작동 중</h4>
+              <p>현재 <code>ai.html</code> 소스 코드 내의 <code>CLOUDFLARE_WORKER_URL</code>이 설정되지 않았거나 연결이 불안정하여 <strong>키워드 분석 시뮬레이터</strong>로 로드되었습니다.</p>
+              <p style="margin-top: 8px;"><strong>진짜 AI(구글 Gemini)와 실시간 연동하는 방법:</strong></p>
+              <ol style="margin-left: 20px; margin-top: 5px;">
+                <li>구글 AI Studio에서 무료 API 키를 받습니다.</li>
+                <li>프로젝트 폴더 내 <code>scratch/worker.js</code> 코드로 Cloudflare Worker를 배포합니다.</li>
+                <li>배포된 워커 주소를 <code>ai.html</code> 파일 220번째 줄의 <code>CLOUDFLARE_WORKER_URL</code>에 넣어 저장한 뒤 푸시하세요!</li>
+              </ol>
+            </div>
+          `;
+        }
+
+        renderResult(dreamQuery, simulatedHTML + noticeBanner);
+      }
+
+      // 공유 이벤트 바인딩
+      function bindShareEvent(queryText) {
+        const shareBtn = document.getElementById("shareBtn");
+        if (!shareBtn) return;
+        shareBtn.addEventListener("click", () => {
+          const text = `[자유로운 꿈해몽 AI 분석] "${queryText}"에 대한 분석을 확인해보세요!\n\n해몽 보러가기: ${window.location.href}`;
+          navigator.clipboard.writeText(text).then(() => {
+            alert("공유 링크가 클립보드에 복사되었습니다!");
+          }).catch(err => {
+            console.error("복사 실패:", err);
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
